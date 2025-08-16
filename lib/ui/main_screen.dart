@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/ui/screens/home/home_screen.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -8,8 +10,37 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  var index = 0;
+  final List<Widget> screens = <Widget>[];
+
+  @override
+  void initState() {
+    super.initState();
+    screens.add(const HomeScreen());
+    screens.add(const Placeholder());
+    screens.add(const Placeholder());
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: screens[index],
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Symbols.genres), label: 'Genre'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'Favorites',
+          ),
+        ],
+        currentIndex: index,
+        onTap: (navIndex) {
+          setState(() {
+            index = navIndex;
+          });
+        },
+      ),
+    );
   }
 }
