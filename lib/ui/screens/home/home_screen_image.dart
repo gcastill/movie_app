@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:movie_app/providers.dart';
 
 const delayTime = 1000 * 10;
 const animationTime = 1000;
@@ -28,11 +30,12 @@ const images = [
   'https://image.tmdb.org/t/p/w780/vfrQk5IPloGg1v9Rzbh2Eg3VGyM.jpg',
 ];
 
-class HomeScreenImage extends StatelessWidget {
+class HomeScreenImage extends ConsumerWidget {
   const HomeScreenImage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final images = ref.watch(movieImagesProvider);
     final screenWidth = MediaQuery.of(context).size.width - 32;
 
     return SizedBox(
