@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:movie_app/ui/screens/genres/genre_search_row.dart';
 import 'package:movie_app/ui/theme/theme.dart';
 
 class GenreScreen extends ConsumerStatefulWidget {
@@ -32,6 +33,7 @@ class _GenreScreenState extends ConsumerState<GenreScreen> {
                 ),
               ],
             ),
+            GenreSearchRow((String searchString) {}),
           ],
         ),
       ),
